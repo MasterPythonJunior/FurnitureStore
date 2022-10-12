@@ -1,0 +1,75 @@
+{% load static %}
+{% load mebel_app_tags %}
+
+
+{% if request.user.is_authenticated %}
+{% get_favourite_products request.user as fav_products %}
+{% endif %}
+<div class="heart">
+    {% if product in fav_products and  request.user.is_authenticated %}
+    <a href="{% url 'save_or_del' product.slug %}" class="product_card_basket-link basket_icon">
+        <svg width="20" height="18" viewBox="0 0 20 18" fill="red"
+             xmlns="http://www.w3.org/2000/svg">
+            <path
+                    d="M10 3.42445C10.1556 3.42445 10.3022 3.35205 10.3969 3.2286C10.3969 3.22853 10.397 3.22847 10.397 3.2284L10.3972 3.22815L10.4006 3.22378L10.4168 3.20326C10.4318 3.18451 10.4549 3.15589 10.4858 3.11882C10.5476 3.04462 10.6402 2.93682 10.7604 2.80662C11.0013 2.5456 11.3498 2.19785 11.7789 1.85114C12.6505 1.14689 13.7893 0.5 15 0.5C17.5018 0.5 19.5 2.45298 19.5 4.82534C19.5 5.82642 19.2983 7.54989 18.0555 9.65158C16.8108 11.7565 14.5058 14.2679 10.2563 16.8148C10.1799 16.86 10.0912 16.8844 10 16.8844C9.90878 16.8844 9.82009 16.86 9.74371 16.8148C5.49418 14.2679 3.18917 11.7565 1.94451 9.65158C0.701742 7.54989 0.5 5.82642 0.5 4.82534C0.5 2.45298 2.4982 0.5 5 0.5C6.21069 0.5 7.34951 1.14689 8.22114 1.85114C8.65025 2.19785 8.99868 2.5456 9.23959 2.80662C9.35976 2.93682 9.45243 3.04462 9.51424 3.11882C9.54512 3.15589 9.56825 3.18451 9.58319 3.20326L9.5994 3.22378L9.6028 3.22815L9.60299 3.2284C9.60305 3.22847 9.6031 3.22853 9.60315 3.2286L9.60323 3.2287C9.69785 3.35209 9.84449 3.42445 10 3.42445Z"
+                    stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+  </a>
+        {% else %}
+    <a href="{% url 'save_or_del' product.slug %}" class="product_card_basket-link basket_icon">
+
+        <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.75 16L9.39645 16.3536C9.49021 16.4473 9.61739 16.5 9.75 16.5C9.88261 16.5 10.0098 16.4473 10.1036 16.3536L9.75 16ZM2.29442 8.54442L1.94086 8.89797L1.94086 8.89797L2.29442 8.54442ZM17.2056 8.54442L16.852 8.19086L16.852 8.19086L17.2056 8.54442ZM8.54442 2.29442L8.19086 2.64797L8.19086 2.64797L8.54442 2.29442ZM9.75 3.5L9.39645 3.85355C9.59171 4.04882 9.90829 4.04882 10.1036 3.85355L9.75 3.5ZM10.9556 2.29442L10.602 1.94086L10.602 1.94086L10.9556 2.29442ZM10.1036 15.6464L2.64797 8.19086L1.94086 8.89797L9.39645 16.3536L10.1036 15.6464ZM16.852 8.19086L9.39645 15.6464L10.1036 16.3536L17.5591 8.89797L16.852 8.19086ZM8.19086 2.64797L9.39645 3.85355L10.1036 3.14645L8.89797 1.94086L8.19086 2.64797ZM10.1036 3.85355L11.3091 2.64797L10.602 1.94086L9.39645 3.14645L10.1036 3.85355ZM14.0806 0.5C12.7759 0.5 11.5246 1.01829 10.602 1.94086L11.3091 2.64797C12.0442 1.91294 13.0411 1.5 14.0806 1.5V0.5ZM18 5.41942C18 6.45891 17.5871 7.45583 16.852 8.19086L17.5591 8.89797C18.4817 7.9754 19 6.72413 19 5.41942H18ZM19 5.41942C19 2.7025 16.7975 0.5 14.0806 0.5V1.5C16.2452 1.5 18 3.25478 18 5.41942H19ZM5.41942 1.5C6.45891 1.5 7.45583 1.91294 8.19086 2.64797L8.89797 1.94086C7.9754 1.01829 6.72413 0.5 5.41942 0.5V1.5ZM1.5 5.41942C1.5 3.25478 3.25478 1.5 5.41942 1.5V0.5C2.7025 0.5 0.5 2.7025 0.5 5.41942H1.5ZM2.64797 8.19086C1.91294 7.45583 1.5 6.45891 1.5 5.41942H0.5C0.5 6.72413 1.01829 7.9754 1.94086 8.89797L2.64797 8.19086Z"
+                  fill="black"/>
+        </svg>
+        </a>
+
+
+            {% endif %}
+
+</div>
+
+
+<div class="product-item">
+    <a href="{{ product.get_absolute_url }}">
+        <img src="{{ product.get_first_photo }}" alt=""
+             class="products__item-img" height="200" width="200"></a>
+    <div class="products__item-text">
+
+        <h3 class="products__item-title">{{ product.title }}</h3>
+        <div class="products__item-desrc">{{ product.description }}</div>
+        <div class="products__item-price">{{ product.price }}</div>
+    </div>
+    <!-- /.products__item-text -->
+    <div class="products__item-options products__options">
+        <h4 class="products__options-title">Размеры</h4>
+        <ul class="products__options-list options__list">
+            <li class="options__list-item">
+                <p class="options__list-text">
+                    ШИРИНА
+                </p>
+                <span class="size">{{ product.get_width_size }}</span>
+            </li>
+            <li class="options__list-item">
+                <p class="options__list-text">
+                    ГЛУБИНА
+                </p>
+                <span class="size">{{ product.get_depth_size }}</span>
+            </li>
+            <li class="options__list-item">
+                <p class="options__list-text">
+                    ВЫСОТА
+                </p>
+                <span class="size">{{ product.get_height_size }}</span>
+            </li>
+        </ul>
+        {% if request.user.is_authenticated %}
+
+        <a href="{% url 'to_cart' product.pk 'add' %}" class="options__btn btn">Добавить в корзину</a>
+        {% else %}
+        Пожалуйста зарегистрируетесь
+        {% endif %}
+    </div>
+    <!-- /.products__options -->
+</div>
+

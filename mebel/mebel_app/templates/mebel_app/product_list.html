@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<main class="main">
+    <div class="container">
+
+        <section class="products">
+
+            {% for category in categories %}
+            <div class="mt-4" style="margin: 25px  auto;">
+
+                <h2 class="products__title">{{ category.title }}</h2>
+                <div class="products__content">
+                    {% for product in category.products %}
+                    <div class="products__item">
+
+                        {% include 'mebel_app/components/_product_card.html' %}
+
+                    </div>                        {% empty %}
+<h2>Здесь пока нет товаров</h2>
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% endfor %}
+            <!-- /.products__content -->
+        </section>
+
+        <!-- /.products -->
+    </div>
+    <!-- /.container -->
+</main>
+
+{% endblock main %}

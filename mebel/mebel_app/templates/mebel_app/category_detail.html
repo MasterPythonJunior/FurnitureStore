@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+<!-- HEADER TEXT BLOCK END -->
+
+<!-- HEADER POSTER START -->
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+<main>
+    <div class="container">
+
+        <section class="products">
+            <div class="products__content">
+                {% for product in products %}
+                <div class="products__item">
+
+
+                    {% include 'mebel_app/components/_product_card.html' %}
+                </div>
+                {% empty %}
+                <h1>Товары скоро добавяться</h1>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+    </div>
+
+</main>
+{% endblock main %}

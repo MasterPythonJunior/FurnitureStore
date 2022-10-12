@@ -1,0 +1,35 @@
+<div class="basket__item">
+                            <a href="#!" class="basket__item-img">
+                                <img src="{{ product.product.get_photo }}" alt="product">
+                            </a>
+                            <div class="basket__item-content">
+                                <div class="basket__item-text">
+                                    <h2 class="basket__item-title">{{ product.product.title }}</h2>
+                                    <p class="basket__item-price">
+                                        <span class="discount">
+                                            <i class="far fa-badge-percent"></i>
+                                            -25%
+                                        </span>
+
+                                        <span class="price"><span>{{ product.product.price }}</span>₽</span>
+
+                                    </p>
+                                </div>
+                                <div class="basket__options">
+                                    <p class="basket__options-color">
+                                        Цвет:
+                                        <span class="color__name">{{ product.product.color }}</span>
+                                        <span class="color__block"></span>
+                                    </p>
+                                    <p class="basket__options-count">
+                                        Количество: <span>1</span>
+                                    </p>
+                                    <p class="basket__options-size">
+                                        Размер(Ш×Д×В): <span>{{ product.product.width }}x{{ product.product.height }}x{{ product.product.length }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="#!" class="basket__delete">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </div>

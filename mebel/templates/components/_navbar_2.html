@@ -1,0 +1,78 @@
+{% load static %}
+{% load mebel_app_tags %}
+<header class="header">
+    <div class="container">
+        <div class="header__content">
+            <div class="header__bar">
+                <a href="#!" class="nav__bars-open">
+                    <span class="burger"></span>
+                    <span class="burger"></span>
+                    <span class="burger"></span>
+                </a>
+
+                <a href="{% url 'product_list' %}" class="logo">
+                    <img src="{% static 'mebel_app/assets/icons/LOGO.svg' %}" alt="logo">
+                </a>
+
+
+                <form class="header__search" role="search" method="get" action="{% url 'search' %}">
+                    <i class="fal fa-search"></i>
+
+                    <input name="q" class="header__search-txt form-control me-2" type="search" placeholder="Поиск"
+                           aria-label="Поиск">
+                </form>
+
+                <ul class="header__list">
+                    <li>
+                        <a href="./registration.html" class="header__list-item _truck">
+                            <i class="far fa-truck"></i>
+                            Доставка
+                        </a>
+                    </li>
+                    {% if not request.user.is_authenticated %}
+                    <li class="header_nav-item mt-3 mt-lg-0">
+
+                        <a href="{% url 'login_registration' %}" class="header__list-item" id="_heart">
+                        </a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'favourite' %}" class="header__list-item" id="_heart">
+
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    <li>
+                        <a href="{% url 'cart' %}" class="header__list-item" id="_bag">
+
+                        </a>
+                    </li>
+
+
+                    {% if not request.user.is_authenticated %}
+                    <li class="header_nav-item mt-3 mt-lg-0">
+
+                        <a href="{% url 'login_registration' %}" class="header__list-item" id="_profile">
+                        </a>
+                    </li>
+                    {% else %}
+
+                    <li class="header_nav-item mt-3 mt-lg-0">
+
+                        <a href="{% url 'profile' %}" class="header__list-item" id="_profile">
+                        </a>
+                    </li>
+
+                    {% endif %}
+                </ul>
+            </div>
+            {% get_categories as categoryy %}
+
+            <!-- /.nav__catigories -->
+
+        </div>
+        <!-- /.header__content -->
+    </div>
+    <!-- /.container -->
+</header>

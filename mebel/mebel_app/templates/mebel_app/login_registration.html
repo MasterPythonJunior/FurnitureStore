@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+
+{% endblock slider %}
+
+{% block main %}
+
+
+<main class="main">
+    <div class="registeration">
+        <div class="container">
+            <div class="registeration__content">
+                <form class="registeration__form active login-form" action="{% url 'register' %}" method="post"
+                      enctype="multipart/form-data">
+
+                    <h2 class="registeration__title products__title">Регистрация</h2>
+                    <div class="registeration__form-grid">
+                        {% if messages %}
+                        <div class="registeration">
+                            {% for message in messages %}
+                            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <form action="{% url 'register' %}" class="login-form" method="post"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group contact__section-input">
+
+                                {{ registration_form.first_name }}
+
+                            </div>
+                            <div class="form-group">
+
+
+                                <div class="contact__section-input">
+                                    {{ registration_form.last_name }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="contact__section-input">
+                                    {{ registration_form.email }}
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="contact__section-input">
+
+                                    {{ registration_form.username }}
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="contact__section-input">
+                                    {{ registration_form.password1 }}
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="contact__section-input">
+                                    {{ registration_form.password2 }}
+
+                                </div>
+                            </div>
+                            <button class="btn registeration__btn" style="margin-top:15px; margin-bottom:10px;" >Подтвердить</button>
+                            <div class="registeration__btns">
+                                <a href="#!" class="registeration__links">Уже есть аккаунт? </a>
+                            </div>
+                        </form>
+                    </div>
+                </form>
+
+                <form class="registeration__form  login-form" action="{% url 'login' %}" method="post"
+                      enctype="multipart/form-data">
+                    <h2 class="registeration__title products__title">Авторизация</h2>
+                    <div class="registeration__form-grid">
+
+
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="contact__section-input">
+                                {{ login_form.username }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="contact__section-input">
+                                {{ login_form.password }}
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn registeration__btn-login _auth" type="submit">Войти</button>
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</main>
+
+
+<!-- /.footer -->
+
+<!-- /.wrapper -->
+{% endblock main %}

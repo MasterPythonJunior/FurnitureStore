@@ -1,0 +1,25 @@
+              {% load mebel_app_tags %}
+<div class="padding-left" style="
+    max-width: 1136px;
+    width: 100%;
+    margin: 25px  auto;
+">
+  {% get_categories as categories %}
+                    <ul class="header__list _categories">
+   {% for category in categories %}
+                        <li>
+
+                            <a href="{{ category.get_absolute_url }}" class="header__list-links">
+
+                                <span class="header__list-img">
+
+                                    <img src="{{ category.image.url }}" alt="icons" width="30" height="30">
+                                </span>
+                                {{ category }}
+                            </a>
+
+                        </li>
+    {% endfor %}
+
+                    </ul>
+</div>

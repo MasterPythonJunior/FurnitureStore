@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load mebel_app_tags %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+{% block slider %}
+{% endblock slider %}
+
+
+{% block header_list_categories %}
+<ul class="header__list _categories">
+    {% get_categories as categories %}
+    {% for catt in categories %}
+    <li>
+        <a href="{% url 'category_list' catt.slug %}" class="header__list-links">
+            {{ catt.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock header_list_categories %}
+
+{% block header_slider %}
+{% endblock header_slider %}
+
+
+{% block main %}
+{% if messages %}
+<div class="container">
+    {% for message in messages %}
+    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<main class="main">
+    <div class="container">
+        <div class="profile" align="center">
+            <form class="profile__form">
+                <h2 class="profile__title">Личные данные</h2>
+                <div class="profile__form-grid">
+                    <div class="input__title">
+                        <h2>Никнейм</h2>
+                        <p class="contact__section-input d-flex justify-content-between">{{ profile.user.username }}</p>
+                    </div>
+                    <div class="input__title">
+                        <h2>Имя</h2>
+                        <p class="contact__section-input d-flex justify-content-between">{{ profile.user.first_name }}
+                        </p>
+
+                        <a href="{% url 'name_form'  %}"
+                           class="options__btn btn">Изменить</a>
+                    </div>
+                    <div class="input__title">
+                        <h2>E-mail</h2>
+                        <p class="contact__section-input d-flex justify-content-between">{{ profile.user.email }}</p>
+                    </div>
+                    <div class="input__title">
+                        <h2>Фамилия</h2>
+                        <p class="contact__section-input d-flex justify-content-between">{{ profile.user.last_name }}
+                        </p>
+
+                        <a href="{% url 'last_name_form' %}"
+                           class="options__btn btn">Изменить</a>
+                    </div>
+                    {% if profile.phone_number %}
+                    <div class="input__title">
+                        <h2>Номер телефона</h2>
+                        <p class="contact__section-input d-flex justify-content-between">{{ profile.phone_number }}
+                        </p>
+                        <a href="{% url 'phone_form' profile.pk %}"
+                           class="options__btn btn">Изменить</a>
+
+                    </div>
+                    {% else %}
+                    <div class="input__title">
+                        <h2>Номер телефона</h2>
+                        <p class="contact__section-input d-flex justify-content-between">-
+                        </p>
+                        <a href="{% url 'phone_form' profile.pk %}"
+                           class="options__btn btn">Изменить</a>
+
+
+                    </div>
+                    {% endif %}
+                    {% if profile.city %}
+                    <div class="input__title" align="center">
+                        <h2>Город</h2>
+                        <p class="contact__section-input d-flex justify-content-between">{{ profile.city }}
+                        </p>
+                        <a href="{% url 'city_form' profile.pk %}"
+                           class="options__btn btn">Изменить</a>
+                    </div>
+                    {% else %}
+                    <div class="input__title" align="center">
+                        <h2>Город</h2>
+                        <p class="contact__section-input d-flex justify-content-between">-
+                        </p>
+                        <a href="{% url 'city_form' profile.pk %}"
+                           class="options__btn btn">Изменить</a>
+
+                    </div>
+                    {% endif %}
+                </div>
+                <a class="text-secondary options__btn btn" href="{% url 'logout' %}">
+
+
+                    Выйти из аккаунта
+
+
+                </a>
+
+            </form>
+        </div>
+    </div>
+</main>
+<!-- /.main -->
+{% endblock main %}

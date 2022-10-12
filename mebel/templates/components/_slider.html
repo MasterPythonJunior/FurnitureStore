@@ -1,0 +1,51 @@
+   {% load static %}
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                    <div class="slider" data-infinity="true">
+        <div class="sliderLines">
+            <div class="slider__item">
+                <img src="{% static 'mebel_app/assets/images/banner-1.png' %}" alt="banner" class="slider__img">
+                <div class="slider__item-content">
+                    <h2 class="slider__item-title">aurora мебель</h2>
+                    <p class="slider__item-descr">
+                        Что такое Aurora?
+                    </p>
+                    <a href="{% url 'about' %}" class="slider__item-button">О нас</a>
+                </div>
+            </div>
+            <div class="slider__item">
+                <img src="{% static 'mebel_app/assets/images/banner-2.png' %}" alt="banner" class="slider__img">
+                <div class="slider__item-content">
+                    <h2 class="slider__item-title">aurora мебель</h2>
+                    <p class="slider__item-descr">
+                        Современная и удобная мебель в Узбекистане
+                    </p>
+                    <a href="http://127.0.0.1:8000/category/kuhny" class="slider__item-button">СМОТРЕТЬ КУХНЮ</a>
+                </div>
+            </div>
+            <div class="slider__item">
+
+                <img src="{% static 'mebel_app/assets/images/banner-3.png' %}" alt="banner" class="slider__img">
+                <div class="slider__item-content">
+                    <h2 class="slider__item-title">aurora мебель</h2>
+                    <p class="slider__item-descr">
+                        Современная и удобная мебель в Узбекистане
+                    </p>
+                    <a href="http://127.0.0.1:8000/category/ofis/" class="slider__item-button">СМОТРЕТЬ ОФИС</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider__btns">
+            <button class="btn__prev">
+                <img src="{% static 'mebel_app/assets/icons/arrow.svg' %}" alt="arrow">
+            </button>
+            <button class="btn__next">
+                <img src="{% static 'mebel_app/assets/icons/arrow.svg' %}" alt="arrow">
+            </button>
+        </div>
+    </div>
+            </div>
+        </div>
+
+    </header>

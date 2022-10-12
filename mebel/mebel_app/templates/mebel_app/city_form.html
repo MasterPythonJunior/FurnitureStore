@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block header_list_categories %}
+{% endblock header_list_categories %}
+
+{% block slider %}
+{% endblock slider %}
+
+{% block main %}
+<main>
+    <div align="center">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="container">
+                {% csrf_token %}
+                <div class="profile__form">
+                    <div class="input__title">
+                        <h2 class="mb-3">Изменить Город</h2>
+                        <div class="form-group mb-3">
+                            {{ form.as_p }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Сохранить изменение</button>
+        </form>
+    </div>
+</main>
+{% endblock main %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load mebel_app_tags %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+{% block slider %}
+
+{% endblock slider %}
+
+
+
+
+
+{% block main %}
+<main>
+<div class="container">
+    <div class="content" align="center">
+        <h3>Оплата прошла успешно! Благодарим за покупку.</h3>
+
+        <h4>В самое ближайшее время с вами свяжутся!</h4>
+        <br>
+        <div style="
+    margin-bottom: 50px;
+">
+                    <a href="{% url 'product_list' %}" class="btn" style="margin-top:;">Перейти на главную страницу</a>
+
+        </div>
+
+    </div>
+</div>
+</main>
+{% endblock main %}

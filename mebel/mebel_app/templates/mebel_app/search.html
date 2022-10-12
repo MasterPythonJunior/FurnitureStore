@@ -1,0 +1,33 @@
+<!DO{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+{% block slider %}
+
+{% endblock slider %}
+
+{% block main %}
+<main class="main">
+    <div class="container">
+        <section class="products">
+            <div class="mt-4" style="margin: 25px  auto;">
+                <div class="products__content">
+                    {% for product in products %}
+                    <div class="products__item">
+                        {% include 'mebel_app/components/_product_card.html' %}
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <!-- /.products__content -->
+        </section>
+
+        <!-- /.products -->
+    </div>
+    <!-- /.container -->
+</main>
+
+{% endblock main %}

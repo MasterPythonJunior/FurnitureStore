@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load mebel_app_tags %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+{% block header_list_categories %}
+<ul class="header__list _categories">
+    {% get_categories as categories %}
+    {% for category in categories %}
+    <li>
+        <a href="{% url 'category_list' category.slug %}" class="header__list-links">
+            {{ category.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock header_list_categories %}
+
+{% block header_slider %}
+{% endblock header_slider %}
+
+{% block main %}
+<main class="main">
+    <div class="container">
+        <section class="basket">
+            <div class="basket__text">
+                {% if products %}
+                <h1 class="basket__title">Ваша корзина</h1>
+                {% else %}
+                <h1 class="basket__title">Ваша корзина пуста</h1>
+                {% endif %}
+                <span class="basket__count"><span>{{ cart_total_quantity }}</span> товара(ов)</span>
+            </div>
+            <div class="basket__items">
+                {% for item in products %}
+                <div class="basket__item">
+                    <a href="{% url 'product' item.product.slug %}" class="basket__item-img">
+                        <img src="{{ item.product.get_first_photo }}">
+                    </a>
+                    <div class="basket__item-content">
+                        <div class="basket__item-text">
+                            <h2 class="basket__item-title">{{ item.product.title }}</h2>
+                            <p class="basket__item-price">
+                                <span class="price"><span>Цена: {{ item.get_total_price }} </span>сум</span>
+                            </p>
+                        </div>
+                        <div class="basket__options">
+                            <p class="basket__options-count">
+                                Количество:
+                                <a href="{% url 'to_cart' item.product.pk  'delete' %}"><i class="fa fa-minus text-dark" aria-hidden="true"></i></a>
+                                <span>{{ item.quantity }}</span>
+                                {% if item.product.quantity > 0 %}
+                                <a href="{% url 'to_cart' item.product.pk 'add' %}"><i class="fa fa-plus text-dark" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <a href="{% url 'delete_all_quantity' item.product.pk %}" class="basket__delete">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% if products %}
+            <form class="products__form">
+                <span>Итоговая стоимость:<span class="products__form-price">{{ cart_total_price }} сум</span> </span>
+                <a href="{% url 'clear_cart' %}" class="btn btn-dark me-3">Очистить корзину</a>
+                <a href="{% url 'checkout' %}" class="btn btn-dark">Оформить заказ</a>
+            </form>
+            {% endif %}
+        </section>
+    </div>
+</main>
+{% endblock main %}
